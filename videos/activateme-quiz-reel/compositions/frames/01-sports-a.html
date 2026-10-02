@@ -97,6 +97,10 @@
         { word: "#s1-word-c", acti: "#s1-acti-c", glow: "#s1-glow-c", at: 4 * BEAT },
       ];
 
+      // Later beats stay hidden until their exact beat (no early pre-render).
+      tl.set(["#s1-word-b", "#s1-word-c", "#s1-acti-b", "#s1-acti-c", "#s1-glow-b", "#s1-glow-c"], { opacity: 0 }, 0);
+      const IR = (i) => ({ immediateRender: i === 0 });
+
       beats.forEach((b, i) => {
         const prev = beats[i - 1];
         // Hard-cut word swap on the beat: the previous word leaves instantly,
@@ -104,18 +108,18 @@
         if (prev) tl.set(prev.word, { opacity: 0 }, b.at);
         tl.fromTo(
           b.word,
-          { opacity: 0, scale: 1.06, filter: "blur(16px)" },
-          { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.34, ease: "power3.out" },
+          { opacity: 1, scale: 1.06, filter: "blur(16px)" },
+          { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.34, ease: "power3.out", ...IR(i) },
           b.at,
         );
 
         // Acti swaps sport on the same beat (scale-swap, smooth settle).
         if (prev) {
-          tl.to(prev.acti, { opacity: 0, scale: 0.9, duration: 0.12, ease: "power2.in" }, b.at - 0.06);
+          tl.set(prev.acti, { opacity: 0 }, b.at); // hard cut, same frame as the word
           tl.fromTo(
             b.acti,
-            { opacity: 0, scale: 0.88, y: 30 },
-            { opacity: 1, scale: 1, y: 0, duration: 0.42, ease: "power3.out" },
+            { opacity: 0.7, scale: 0.88, y: 30 },
+            { opacity: 1, scale: 1, y: 0, duration: 0.42, ease: "power3.out", immediateRender: false },
             b.at,
           );
         } else {
@@ -132,7 +136,7 @@
         tl.fromTo(
           b.glow,
           { opacity: 0, scale: 0.85 },
-          { opacity: 1, scale: 1, duration: i === 0 ? 0.7 : 0.45, ease: "power3.out" },
+          { opacity: 1, scale: 1, duration: i === 0 ? 0.7 : 0.45, ease: "power3.out", ...IR(i) },
           b.at,
         );
       });

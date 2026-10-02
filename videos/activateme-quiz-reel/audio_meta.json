@@ -1,0 +1,6 @@
+{
+  "bgm": { "path": "assets/audio/music.wav", "volume": 1.0, "query": "original composition (scripts/compose_music.py), 120 BPM", "duration_s": 15 },
+  "bgm_pending": false,
+  "voices": [],
+  "sfx": []
+}

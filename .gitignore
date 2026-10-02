@@ -6,3 +6,4 @@ screenshots/
 videos/*/snapshots/
 videos/*/renders/
 videos/*/node_modules/
+videos/*.mp4

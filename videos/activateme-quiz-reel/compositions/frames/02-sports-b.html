@@ -161,7 +161,7 @@
       const FLICKER_END = 2 * BEAT + 7 * SIXTEENTH; // 1.875: one blank 16th
       const GRID_AT = 4 * BEAT; // 2.0
 
-      tl.set(words.slice(1).concat(actis.slice(1)), { opacity: 0 }, 0);
+      tl.set(words.slice(1).concat(actis.slice(1), ["#s2-word-12"], gsap.utils.toArray("#s2-grid .s2-cell")), { opacity: 0 }, 0);
       times.forEach((t, k) => {
         const flicker = k >= 2;
         if (k > 0) {
@@ -174,8 +174,8 @@
           tl.set(actis[k], { opacity: 1, filter: "blur(10px)", x: 40 }, t);
           tl.to(actis[k], { filter: "blur(0px)", x: 0, duration: 0.1, ease: "power2.out" }, t);
         } else {
-          tl.fromTo(words[k], { opacity: 0, scale: 1.06, filter: "blur(14px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.3, ease: "power3.out" }, t);
-          tl.fromTo(actis[k], { opacity: 0, scale: 0.88, y: 30 }, { opacity: 1, scale: 1, y: 0, duration: 0.38, ease: "power3.out" }, t);
+          tl.fromTo(words[k], { opacity: 1, scale: 1.06, filter: "blur(14px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.3, ease: "power3.out", immediateRender: k === 0 }, t);
+          tl.fromTo(actis[k], { opacity: 0.7, scale: 0.88, y: 30 }, { opacity: 1, scale: 1, y: 0, duration: 0.38, ease: "power3.out", immediateRender: k === 0 }, t);
         }
       });
       tl.set(words[words.length - 1], { opacity: 0 }, FLICKER_END);
@@ -187,15 +187,15 @@
       tl.to("#s2-glow-full", { opacity: 0.38, scale: 1.25, duration: 0.6, ease: "power3.out" }, GRID_AT);
 
       // Finale: "12 activities." + all twelve Acti assemble from the centre out.
-      tl.fromTo("#s2-word-12", { opacity: 0, scale: 1.06, filter: "blur(14px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.34, ease: "power3.out" }, GRID_AT);
+      tl.fromTo("#s2-word-12", { opacity: 1, scale: 1.06, filter: "blur(14px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.34, ease: "power3.out", immediateRender: false }, GRID_AT);
       const cells = gsap.utils.toArray("#s2-grid .s2-cell");
       cells.forEach((cell, i) => {
         const col = i % 3, row = Math.floor(i / 3);
         const dist = Math.abs(col - 1) + Math.abs(row - 1.5);
         tl.fromTo(
           cell,
-          { opacity: 0, scale: 0.4, x: (1 - col) * 120, y: (1.5 - row) * 110 },
-          { opacity: 1, scale: 1, x: 0, y: 0, duration: 0.5, ease: "power3.out" },
+          { opacity: 0.5, scale: 0.4, x: (1 - col) * 120, y: (1.5 - row) * 110 },
+          { opacity: 1, scale: 1, x: 0, y: 0, duration: 0.5, ease: "power3.out", immediateRender: false },
           GRID_AT + dist * 0.05,
         );
       });
