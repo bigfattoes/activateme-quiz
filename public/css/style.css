@@ -145,12 +145,24 @@ h1, h2, h3, p { margin: 0; }
 .screen-result { gap: 16px; }
 .result-hero { text-align: center; position: relative; }
 .result-hero .kicker { margin: 4px 0 0; }
-.result-hero .acti { height: min(34vh, 270px); width: auto; margin: 0 auto -26px; position: relative; z-index: 1; animation: pop 0.5s 0.1s ease both; }
+.hero-figure { position: relative; z-index: 1; margin: 8px auto -26px; width: fit-content; }
+.result-hero .acti { height: min(36vh, 290px); width: auto; max-width: 92vw; margin: 0 auto; animation: pop 0.5s 0.1s ease both; }
+/* Sticker-style cheer above Acti: "GOAL!" */
+.cheer {
+  position: absolute; z-index: 2; top: 2%; left: 50%;
+  transform: translateX(-50%) rotate(-6deg);
+  padding: 2px 18px 0; border-radius: 16px; background: var(--white);
+  font-size: clamp(30px, 9vw, 40px); font-weight: 800; line-height: 1.15; white-space: nowrap;
+  box-shadow: 0 6px 16px rgba(27, 11, 70, 0.3);
+  animation: cheer-in 0.55s 0.35s cubic-bezier(.2,1.6,.4,1) both;
+}
+.cheer span { background: var(--gradient-x); -webkit-background-clip: text; background-clip: text; color: transparent; }
+@keyframes cheer-in { from { opacity: 0; transform: translateX(-50%) rotate(-6deg) scale(0.3); } to { opacity: 1; transform: translateX(-50%) rotate(-6deg) scale(1); } }
 .card {
   background: var(--white); color: var(--ink);
   border-radius: 28px; padding: 22px 20px; box-shadow: var(--shadow);
 }
-.match { text-align: center; padding-top: 34px; }
+.match { text-align: center; padding-top: 38px; }
 .match .emoji { font-size: 54px; line-height: 1; }
 .match h1 {
   font-size: clamp(40px, 12vw, 54px); line-height: 1; font-weight: 800; margin: 6px 0 8px;
@@ -160,7 +172,7 @@ h1, h2, h3, p { margin: 0; }
 .runners { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 18px; }
 .runners-title { grid-column: 1 / -1; font-size: 15px; font-weight: 700; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.05em; }
 .runner { background: var(--lilac); border-radius: 18px; padding: 12px 10px; text-align: center; }
-.runner .emoji { font-size: 32px; line-height: 1.1; }
+.runner .runner-acti { height: 104px; width: auto; max-width: 100%; margin: -2px auto 4px; filter: drop-shadow(0 6px 8px rgba(27, 11, 70, 0.2)); }
 .runner b { display: block; font-size: 19px; line-height: 1.1; margin-top: 2px; }
 .runner span { display: block; font-size: 15px; color: var(--ink-soft); line-height: 1.2; margin-top: 2px; }
 
@@ -206,6 +218,7 @@ h1, h2, h3, p { margin: 0; }
 .ar .btn { width: 100%; }
 
 .fest { text-align: center; }
+.fest-sticker { width: 190px; height: auto; display: block; margin: -6px auto 2px; }
 .fest h2 { margin-bottom: 4px; }
 .fest .when { font-weight: 800; color: var(--purple); font-size: 19px; margin-top: 6px; }
 .fest a { color: var(--magenta); font-weight: 700; }

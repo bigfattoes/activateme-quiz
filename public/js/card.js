@@ -13,9 +13,10 @@
     story: {
       h: 1920,
       brandY: 230, logoH: 92, brandSize: 56,
-      kickerY: 380, kickerSize: 62,
-      card: { y: 420, h: 1020 },
-      acti: { y: 440, h: 560 },
+      kickerY: 365, kickerSize: 62,
+      card: { y: 440, h: 1000 },
+      acti: { y: 500, h: 505 },
+      cheerSize: 66,
       nameY: 1100, nameSize: 124,
       reasonY: 1180, reasonSize: 50, reasonLine: 62,
       dividerY: 1300,
@@ -27,9 +28,10 @@
     post: {
       h: 1350,
       brandY: 92, logoH: 72, brandSize: 46,
-      kickerY: 200, kickerSize: 52,
-      card: { y: 236, h: 846 },
-      acti: { y: 252, h: 450 },
+      kickerY: 182, kickerSize: 52,
+      card: { y: 252, h: 830 },
+      acti: { y: 296, h: 404 },
+      cheerSize: 54,
       nameY: 790, nameSize: 110,
       reasonY: 862, reasonSize: 44, reasonLine: 54,
       dividerY: 965,
@@ -94,6 +96,37 @@
     });
     if (line) lines.push(line);
     return lines;
+  }
+
+  function brandGradient(ctx, x0, x1) {
+    var g = ctx.createLinearGradient(x0, 0, x1, 0);
+    g.addColorStop(0, "#4a01e0");
+    g.addColorStop(0.4, "#b01ab8");
+    g.addColorStop(0.75, "#f83840");
+    g.addColorStop(1, "#fc8700");
+    return g;
+  }
+
+  // A tilted white sticker with gradient text, centred on (x, y).
+  function drawCheer(ctx, text, x, y, size) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(-6 * Math.PI / 180);
+    ctx.font = "800 " + size + "px " + FONT;
+    var tw = ctx.measureText(text).width;
+    var w = tw + size * 0.9;
+    var h = size * 1.35;
+    ctx.shadowColor = "rgba(27,11,70,0.3)";
+    ctx.shadowBlur = 24;
+    ctx.shadowOffsetY = 8;
+    ctx.fillStyle = "#ffffff";
+    roundRect(ctx, -w / 2, -h / 2, w, h, h * 0.3);
+    ctx.fill();
+    ctx.shadowColor = "transparent";
+    ctx.fillStyle = brandGradient(ctx, -tw / 2, tw / 2);
+    ctx.textAlign = "center";
+    ctx.fillText(text, 0, size * 0.36);
+    ctx.restore();
   }
 
   function draw(format, data, images) {
@@ -163,16 +196,14 @@
     if (aw > cw - 80) { aw = cw - 80; ah = aw * (a.height / a.width); }
     ctx.drawImage(a, (W - aw) / 2, L.acti.y + (L.acti.h - ah), aw, ah);
 
+    // Cheer sticker across the top edge of the card: "GOAL!"
+    if (data.top.cheer) drawCheer(ctx, data.top.cheer, W / 2, L.card.y, L.cheerSize);
+
     // Activity name with emoji, gradient text
     var name = data.top.emoji + " " + data.top.name;
     var size = fitFont(ctx, name, "800", L.nameSize, cw - 80);
     var nameW = ctx.measureText(name).width;
-    var g = ctx.createLinearGradient(W / 2 - nameW / 2, 0, W / 2 + nameW / 2, 0);
-    g.addColorStop(0, "#4a01e0");
-    g.addColorStop(0.4, "#b01ab8");
-    g.addColorStop(0.75, "#f83840");
-    g.addColorStop(1, "#fc8700");
-    ctx.fillStyle = g;
+    ctx.fillStyle = brandGradient(ctx, W / 2 - nameW / 2, W / 2 + nameW / 2);
     ctx.font = "800 " + size + "px " + FONT;
     ctx.fillText(name, W / 2, L.nameY);
 

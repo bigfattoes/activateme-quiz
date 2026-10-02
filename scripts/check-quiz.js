@@ -24,7 +24,9 @@ for (const f of ["strings.js", "quiz.js", "clubs.js"]) {
 const { QUIZ, CLUBS, STRINGS, scoreQuiz } = sandbox.window;
 const errors = [];
 const ids = Object.keys(QUIZ.activities);
-const poses = ["front", "wave", "run", "jump", "lol", "hmm", "threequarter", "face"];
+// Every Acti pose available = every image in public/assets/acti/
+const poses = fs.readdirSync(path.join(__dirname, "..", "public", "assets", "acti"))
+  .filter((f) => f.endsWith(".webp")).map((f) => f.replace(".webp", ""));
 
 if (!STRINGS) errors.push("strings.js did not define window.STRINGS");
 if (QUIZ.questions.length < 1) errors.push("No questions found");

@@ -94,7 +94,17 @@ cycling, esports, chess, creativity`.
 - `reason`: the big line for a top match ("Born to run and loves a team. Football!")
 - `short`: the small line under a runner-up
 - `builds` and `tryAtHome`: the "Why it's a great fit" box
-- `acti`: which Acti pose shows (`front, wave, run, jump, lol, hmm, threequarter, face`)
+- `acti`: which Acti pose shows (see the pose list below)
+- `cheer`: the sticker shout above Acti on the result screen and share image ("GOAL!")
+
+### Acti poses you can use
+Any file name in `public/assets/acti/` (without `.webp`):
+- **Sports:** `football, basketball, cricket, tennis, swimming, gymnastics, boxing, skating, cycling, vr, chess, creativity`
+- **Reactions:** `wave, point, run, jump, laugh, think, flex, thumbs, dance, heart, thanks, shocked, cry, yawn, face`
+
+They come from the HD pack in `bigfattoes/acti-stickers` (`source/pose_*.png`). To add a new pose, save it as a
+`.webp` in both `public/assets/acti/` (720 px tall, for the screens) and `public/assets/acti-card/` (1100 px, for the
+share images) with the same name.
 
 ### Change any other wording, dates or links
 `public/data/strings.js`. This covers buttons, the email form and privacy note, the event line on the share image,
@@ -224,5 +234,5 @@ NODE_PATH=$(npm root -g) node scripts/make-og.js  # regenerates public/assets/og
 - Admin API calls send the password as `Authorization: Bearer …`, never in the URL. Wrong passwords are slowed down.
 - The CSV export guards against spreadsheet formula injection.
 - `public/_headers` sets security headers and caching: images and font are cached for a week, while text, data and code always re-check, so edits show up right away.
-- Fonts: Baloo 2 (SIL OFL, licence in `public/assets/fonts/OFL.txt`). Acti artwork and logo copied from
+- Fonts: Baloo 2 (SIL OFL, licence in `public/assets/fonts/OFL.txt`). Acti artwork (HD poses and the "See you there" sticker) and logo copied from
   `bigfattoes/acti-stickers` and `bigfattoes/Instaarfilter`.

@@ -108,7 +108,7 @@
         el("img", { src: "/assets/logo-small.webp", alt: "", width: "40", height: "36" }),
         el("span", { text: S.eventName })
       ]),
-      actiImg("front", "acti-hero bob", "Acti, the ActivateMe mascot"),
+      actiImg("wave", "acti-hero bob", "Acti, the ActivateMe mascot"),
       el("p", { class: "kicker", text: S.startKicker }),
       el("h1", { text: S.startTitle }),
       el("p", { class: "lead", text: S.startText }),
@@ -170,7 +170,7 @@
         el("span", { class: "q-count", text: t(S.questionCount, { n: i + 1, total: total }) })
       ]),
       el("div", { class: "q-head" }, [
-        actiImg(q.acti || "front"),
+        actiImg(q.acti || "wave"),
         el("h2", { text: q.title })
       ]),
       answers
@@ -185,9 +185,10 @@
     state.step = QUIZ.questions.length;
     var top = QUIZ.activities[state.ranked[0]];
     preload("/assets/acti/" + top.acti + ".webp");
+    state.ranked.slice(1).forEach(function (id) { preload("/assets/acti/" + QUIZ.activities[id].acti + ".webp"); });
 
     show(el("section", { class: "screen screen-thinking" }, [
-      actiImg("hmm"),
+      actiImg("think"),
       el("p", { text: S.thinking }),
       el("div", { class: "dots", "aria-hidden": "true" }, [el("span"), el("span"), el("span")])
     ]));
@@ -212,17 +213,19 @@
       .concat(ids.slice(1).map(function (id) {
         var a = QUIZ.activities[id];
         return el("div", { class: "runner" }, [
-          el("div", { class: "emoji", "aria-hidden": "true", text: a.emoji }),
-          el("b", { text: a.name }),
+          actiImg(a.acti, "runner-acti"),
+          el("b", { text: a.emoji + " " + a.name }),
           el("span", { text: a.short })
         ]);
       })));
 
     var hero = el("div", { class: "result-hero" }, [
       el("p", { class: "kicker", text: S.resultKicker }),
-      actiImg(top.acti, "", "Acti celebrating"),
+      el("div", { class: "hero-figure" }, [
+        top.cheer ? el("div", { class: "cheer" }, [el("span", { text: top.cheer })]) : null,
+        actiImg(top.acti, "", "Acti playing " + top.name)
+      ]),
       el("div", { class: "card match" }, [
-        el("div", { class: "emoji", "aria-hidden": "true", text: top.emoji }),
         el("h1", { text: top.name }),
         el("p", { class: "reason", text: top.reason }),
         runners
@@ -264,6 +267,7 @@
         el("a", { class: "btn btn-grad", href: S.arUrl, target: "_blank", rel: "noopener", text: S.arButton })
       ]),
       el("div", { class: "card fest" }, [
+        el("img", { class: "fest-sticker", src: "/assets/stickers/see-you-there.webp", alt: "See you there! 16–17 Jan 2027", loading: "lazy" }),
         el("h2", { text: S.festTitle }),
         el("p", { text: t(S.festText, vars()) }),
         el("p", { class: "when", text: S.eventDates + " · " + S.eventPlace }),
@@ -372,7 +376,7 @@
 
   function thanks() {
     return el("div", null, [
-      el("img", { src: "/assets/acti/wave.webp", alt: "", class: "acti", style: "width:90px;margin:0 auto 6px" }),
+      el("img", { src: "/assets/acti/thanks.webp", alt: "", class: "acti", style: "height:150px;width:auto;margin:0 auto 6px" }),
       el("p", { class: "thanks", text: t(S.emailThanks, { kids: kids() }) })
     ]);
   }

@@ -18,8 +18,8 @@
  *     boxing, skating, cycling, esports, chess, creativity).
  *  - Answer "id"s are what get saved in the sign-ups export.
  *    You can change labels freely, but try to keep ids the same.
- *  - "acti" is which Acti pose to show. Options:
- *    front, wave, run, jump, lol, hmm, threequarter, face
+ *  - "acti" is which Acti pose to show. See the list of poses in README
+ *    (e.g. wave, point, run, jump, laugh, think, flex, thumbs, football...)
  *  - After editing, run "npm test" (see README) to check for mistakes.
  * ============================================================
  */
@@ -28,7 +28,7 @@ window.QUIZ = {
     {
       id: "age",
       title: "How old is your little legend?",
-      acti: "wave",
+      acti: "point",
       answers: [
         { id: "4-6",   emoji: "🐣", label: "4–6",   points: { swimming: 1, gymnastics: 1, creativity: 1, football: 1 } },
         { id: "7-9",   emoji: "🧒", label: "7–9",   points: { skating: 1, cycling: 1, tennis: 1, basketball: 1 } },
@@ -48,7 +48,7 @@ window.QUIZ = {
     {
       id: "social",
       title: "Team player or solo star?",
-      acti: "threequarter",
+      acti: "thumbs",
       answers: [
         { id: "team",  emoji: "🤝", label: "Loves being in a team",      points: { football: 3, basketball: 3, cricket: 3 } },
         { id: "solo",  emoji: "🦸", label: "Happy doing their own thing", points: { tennis: 2, swimming: 2, gymnastics: 2, skating: 2, cycling: 2, boxing: 2 } },
@@ -58,7 +58,7 @@ window.QUIZ = {
     {
       id: "spark",
       title: "What lights them up?",
-      acti: "hmm",
+      acti: "laugh",
       answers: [
         { id: "win",    emoji: "🏆", label: "Winning!",               points: { boxing: 2, tennis: 2, esports: 2, football: 1, basketball: 1, chess: 1 } },
         { id: "make",   emoji: "🎨", label: "Making things",          points: { creativity: 3, gymnastics: 1, skating: 1 } },
@@ -79,7 +79,7 @@ window.QUIZ = {
     {
       id: "power",
       title: "Pick their superpower!",
-      acti: "lol",
+      acti: "flex",
       answers: [
         { id: "speed",       emoji: "⚡", label: "Speed",       points: { cycling: 3, football: 1, skating: 1, swimming: 1 } },
         { id: "strength",    emoji: "💪", label: "Strength",    points: { boxing: 2, cricket: 1, basketball: 1 } },
@@ -98,20 +98,21 @@ window.QUIZ = {
    *  builds   = what it's great for (shown in the on-screen guide)
    *  tryAtHome = an easy first step (shown in the on-screen guide)
    *  acti     = Acti pose shown on the result screen and share card
+ *  cheer    = the sticker shout above Acti on the result ("GOAL!")
    */
   activities: {
-    football:   { name: "Football",     emoji: "⚽", acti: "run",          reason: "Born to run and loves a team. Football!",          short: "Team energy to burn",      builds: "Teamwork, speed and confidence",           tryAtHome: "Kick a ball around the park with friends." },
-    basketball: { name: "Basketball",   emoji: "🏀", acti: "jump",         reason: "Bouncy, quick and a team star. Basketball!",       short: "Bounce plus teamwork",     builds: "Coordination, teamwork and quick thinking", tryAtHome: "Practise dribbling: 20 bounces with each hand." },
-    cricket:    { name: "Cricket",      emoji: "🏏", acti: "front",        reason: "Sharp eye, steady arm, team spirit. Cricket!",     short: "Great aim, team spirit",   builds: "Focus, hand-eye coordination and patience", tryAtHome: "Play catch: count how many in a row without a drop." },
-    tennis:     { name: "Tennis",       emoji: "🎾", acti: "jump",         reason: "Quick feet and a perfect aim. Tennis!",            short: "Quick feet, sharp aim",    builds: "Agility, focus and coordination",          tryAtHome: "Bounce a ball on a racket (or a book!) and count." },
-    swimming:   { name: "Swimming",     emoji: "🏊", acti: "wave",         reason: "Part fish, all fun. Swimming!",                    short: "Loves to splash",          builds: "Water confidence, stamina and safety",     tryAtHome: "Practise floating like a starfish at the pool." },
-    gymnastics: { name: "Gymnastics",   emoji: "🤸", acti: "jump",         reason: "Flips, balance and serious bounce. Gymnastics!",   short: "A natural flipper",        builds: "Strength, balance and flexibility",        tryAtHome: "Try a 10-second balance on one leg, eyes closed." },
-    boxing:     { name: "Boxing",       emoji: "🥊", acti: "run",          reason: "Strong, fast and fearless. Boxing!",               short: "Strong and fearless",      builds: "Fitness, focus and self-confidence",       tryAtHome: "Do 30 seconds of shadow-boxing to music." },
-    skating:    { name: "Skating",      emoji: "🛼", acti: "run",          reason: "Smooth moves and great balance. Skating!",         short: "Rolls with style",         builds: "Balance, coordination and courage",        tryAtHome: "Walk heel-to-toe along a line to train balance." },
-    cycling:    { name: "Cycling",      emoji: "🚴", acti: "run",          reason: "Loves speed and the open air. Cycling!",           short: "Built for speed",          builds: "Stamina, balance and independence",        tryAtHome: "Plan a family ride on a cycle track this weekend." },
-    esports:    { name: "VR & Esports", emoji: "🎮", acti: "lol",          reason: "Quick thumbs and a big imagination. VR & Esports!", short: "Game-ready brain",        builds: "Reaction speed, strategy and teamwork",    tryAtHome: "Play a co-op game together and plan your moves." },
-    chess:      { name: "Chess",        emoji: "♟️", acti: "hmm",          reason: "A big brain that loves a challenge. Chess!",       short: "Loves a puzzle",           builds: "Focus, planning and patience",             tryAtHome: "Learn how the knight moves and play a mini game." },
-    creativity: { name: "Creativity",   emoji: "🎨", acti: "lol",          reason: "Full of ideas and loves to make. Creativity!",     short: "Full of ideas",            builds: "Imagination, expression and confidence",   tryAtHome: "Build something new from a box of recycling." }
+    football:   { name: "Football",     emoji: "⚽", acti: "football", cheer: "GOAL!", reason: "Born to run and loves a team. Football!",          short: "Team energy to burn",      builds: "Teamwork, speed and confidence",           tryAtHome: "Kick a ball around the park with friends." },
+    basketball: { name: "Basketball",   emoji: "🏀", acti: "basketball", cheer: "SWISH!", reason: "Bouncy, quick and a team star. Basketball!",       short: "Bounce plus teamwork",     builds: "Coordination, teamwork and quick thinking", tryAtHome: "Practise dribbling: 20 bounces with each hand." },
+    cricket:    { name: "Cricket",      emoji: "🏏", acti: "cricket", cheer: "HOWZAT!", reason: "Sharp eye, steady arm, team spirit. Cricket!",     short: "Great aim, team spirit",   builds: "Focus, hand-eye coordination and patience", tryAtHome: "Play catch: count how many in a row without a drop." },
+    tennis:     { name: "Tennis",       emoji: "🎾", acti: "tennis", cheer: "ACE!", reason: "Quick feet and a perfect aim. Tennis!",            short: "Quick feet, sharp aim",    builds: "Agility, focus and coordination",          tryAtHome: "Bounce a ball on a racket (or a book!) and count." },
+    swimming:   { name: "Swimming",     emoji: "🏊", acti: "swimming", cheer: "SPLASH!", reason: "Part fish, all fun. Swimming!",                    short: "Loves to splash",          builds: "Water confidence, stamina and safety",     tryAtHome: "Practise floating like a starfish at the pool." },
+    gymnastics: { name: "Gymnastics",   emoji: "🤸", acti: "gymnastics", cheer: "FLIP MODE!", reason: "Flips, balance and serious bounce. Gymnastics!",   short: "A natural flipper",        builds: "Strength, balance and flexibility",        tryAtHome: "Try a 10-second balance on one leg, eyes closed." },
+    boxing:     { name: "Boxing",       emoji: "🥊", acti: "boxing", cheer: "KNOCKOUT!", reason: "Strong, fast and fearless. Boxing!",               short: "Strong and fearless",      builds: "Fitness, focus and self-confidence",       tryAtHome: "Do 30 seconds of shadow-boxing to music." },
+    skating:    { name: "Skating",      emoji: "🛼", acti: "skating", cheer: "WHEEE!", reason: "Smooth moves and great balance. Skating!",         short: "Rolls with style",         builds: "Balance, coordination and courage",        tryAtHome: "Walk heel-to-toe along a line to train balance." },
+    cycling:    { name: "Cycling",      emoji: "🚴", acti: "cycling", cheer: "RIDE ON!", reason: "Loves speed and the open air. Cycling!",           short: "Built for speed",          builds: "Stamina, balance and independence",        tryAtHome: "Plan a family ride on a cycle track this weekend." },
+    esports:    { name: "VR & Esports", emoji: "🎮", acti: "vr", cheer: "GAME ON!", reason: "Quick thumbs and a big imagination. VR & Esports!", short: "Game-ready brain",        builds: "Reaction speed, strategy and teamwork",    tryAtHome: "Play a co-op game together and plan your moves." },
+    chess:      { name: "Chess",        emoji: "♟️", acti: "chess", cheer: "CHECKMATE!", reason: "A big brain that loves a challenge. Chess!",       short: "Loves a puzzle",           builds: "Focus, planning and patience",             tryAtHome: "Learn how the knight moves and play a mini game." },
+    creativity: { name: "Creativity",   emoji: "🎨", acti: "creativity", cheer: "GET CREATIVE!", reason: "Full of ideas and loves to make. Creativity!",     short: "Full of ideas",            builds: "Imagination, expression and confidence",   tryAtHome: "Build something new from a box of recycling." }
   },
 
   // Used ONLY when two activities have exactly the same total score.
