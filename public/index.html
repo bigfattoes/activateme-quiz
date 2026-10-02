@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>What should my kid try? · ActivateMe Fest quiz</title>
+  <meta name="description" content="6 quick questions, under a minute. Find your kid's perfect sport or activity, then try it at ActivateMe Fest, 16–17 Jan 2027, Dubai Silicon Oasis.">
+  <meta name="theme-color" content="#4a01e0">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="What should my kid try? 🧢">
+  <meta property="og:description" content="Take Acti's 1-minute quiz and find your kid's perfect activity at ActivateMe Fest.">
+  <meta property="og:image" content="/assets/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="preload" href="/assets/fonts/baloo2-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/acti/front.webp" as="image">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="bg" aria-hidden="true"></div>
+  <main id="app" class="app" aria-live="polite">
+    <!-- Start screen: shown straight away so the first paint is fast. -->
+    <section class="screen screen-start" id="screen-start">
+      <div class="brand">
+        <img src="/assets/logo-small.webp" alt="" width="40" height="36">
+        <span data-s="eventName">ActivateMe Fest</span>
+      </div>
+      <img class="acti acti-hero bob" src="/assets/acti/front.webp" alt="Acti, the ActivateMe mascot" width="390" height="520">
+      <p class="kicker" data-s="startKicker">ActivateMe Fest quiz</p>
+      <h1 data-s="startTitle">What should my kid try?</h1>
+      <p class="lead" data-s="startText">6 quick questions, under a minute. Acti will find your kid's perfect activity!</p>
+      <button class="btn btn-big" id="start-btn" type="button" data-s="startButton">Let's go!</button>
+      <p class="note" data-s="startNote">No sign-up needed to see the result.</p>
+    </section>
+  </main>
+
+  <noscript><p class="noscript">Please turn on JavaScript to take the quiz.</p></noscript>
+
+  <script src="/data/strings.js"></script>
+  <script src="/data/quiz.js"></script>
+  <script src="/data/clubs.js"></script>
+  <script src="/js/card.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

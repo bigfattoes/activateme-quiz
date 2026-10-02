@@ -1,0 +1,23 @@
+# Cloudflare Pages headers. https://developers.cloudflare.com/pages/configuration/headers/
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Content-Security-Policy: default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; font-src 'self'; frame-ancestors *; base-uri 'self'; form-action 'self'
+
+# Images and the font rarely change: cache for a week on phones.
+/assets/*
+  Cache-Control: public, max-age=604800
+
+# Quiz text, scoring and code: always check for a newer version,
+# so edits show up straight after a deploy.
+/data/*
+  Cache-Control: no-cache
+/js/*
+  Cache-Control: no-cache
+/css/*
+  Cache-Control: no-cache
+
+/admin*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store

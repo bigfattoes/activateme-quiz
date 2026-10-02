@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Quiz admin · ActivateMe Fest</title>
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    body { color: var(--ink); }
+    .bg { display: none; }
+    body { background: var(--lilac); }
+    .admin { max-width: 760px; margin: 0 auto; padding: 24px 16px 60px; }
+    .admin header { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+    .admin header img { width: 40px; }
+    .admin header h1 { font-size: 26px; font-weight: 800; }
+    .admin .card { margin-bottom: 16px; }
+    .admin form { display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end; }
+    .admin form .field { flex: 1; min-width: 200px; margin: 0; }
+    .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+    .tile { background: var(--lilac); border-radius: 16px; padding: 12px 14px; }
+    .tile b { display: block; font-size: 34px; line-height: 1.1; color: var(--purple); }
+    .tile span { font-size: 15px; color: var(--ink-soft); font-weight: 600; }
+    table { width: 100%; border-collapse: collapse; font-size: 17px; }
+    th { text-align: left; font-size: 14px; color: var(--ink-soft); text-transform: uppercase; letter-spacing: .05em; padding: 6px 4px; }
+    td { padding: 8px 4px; border-top: 1px solid #ece6fb; vertical-align: middle; }
+    td.num { text-align: right; font-weight: 800; width: 60px; }
+    .bar { height: 14px; border-radius: 8px; background: var(--gradient-x); }
+    .bar-cell { width: 45%; }
+    .downloads { display: flex; gap: 10px; flex-wrap: wrap; }
+    .downloads .btn { flex: 1; min-width: 220px; font-size: 18px; }
+    .err { color: #c4002c; font-weight: 700; margin-top: 8px; }
+    .muted { color: var(--ink-soft); font-size: 15px; }
+  </style>
+</head>
+<body>
+  <div class="admin">
+    <header>
+      <img src="/assets/logo-small.webp" alt="">
+      <h1>Quiz admin</h1>
+    </header>
+
+    <div class="card" id="login">
+      <form id="login-form">
+        <label class="field"><span>Admin password</span><input type="password" id="password" autocomplete="current-password" required></label>
+        <button class="btn btn-grad" type="submit">Open</button>
+      </form>
+      <p class="err" id="login-err" role="alert"></p>
+    </div>
+
+    <div id="dash" hidden>
+      <div class="card">
+        <div class="tiles">
+          <div class="tile"><b id="t-quizzes">0</b><span>Quizzes finished</span></div>
+          <div class="tile"><b id="t-signups">0</b><span>Email sign-ups</span></div>
+          <div class="tile"><b id="t-clubs">0</b><span>Said yes to club info</span></div>
+          <div class="tile"><b id="t-news">0</b><span>Said yes to news</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Download</h2>
+        <div class="downloads">
+          <button class="btn btn-grad" type="button" data-export="signups">⬇️ Sign-ups (CSV)</button>
+          <button class="btn" type="button" data-export="results" style="border:2px solid #ddd3f5">⬇️ All quiz results (CSV)</button>
+        </div>
+        <p class="muted" style="margin-top:10px">CSV files open in Excel, Numbers or Google Sheets. In the sign-ups file, opt_in_clubs / opt_in_news are 1 for yes and 0 for no.</p>
+        <p class="err" id="dl-err" role="alert"></p>
+      </div>
+
+      <div class="card">
+        <h2>Top matches (everyone who finished the quiz)</h2>
+        <table><thead><tr><th>Activity</th><th></th><th style="text-align:right">People</th></tr></thead><tbody id="results"></tbody></table>
+      </div>
+
+      <div class="card">
+        <h2>Top matches (people who signed up)</h2>
+        <table><thead><tr><th>Activity</th><th></th><th style="text-align:right">People</th></tr></thead><tbody id="signups"></tbody></table>
+      </div>
+      <p class="muted"><button class="btn btn-ghost" type="button" id="refresh" style="color:var(--purple);border-color:var(--purple)">↻ Refresh</button></p>
+    </div>
+  </div>
+
+  <script src="/data/quiz.js"></script>
+  <script src="/js/admin.js"></script>
+</body>
+</html>

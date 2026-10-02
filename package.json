@@ -1,0 +1,9 @@
+{
+  "name": "activateme-quiz",
+  "private": true,
+  "description": "ActivateMe Fest 'What should my kid try?' quiz",
+  "scripts": {
+    "test": "node scripts/check-quiz.js",
+    "dev": "npx wrangler@4 pages dev public --d1 DB=activateme-quiz-local --binding ADMIN_PASSWORD=letmein --port 8788"
+  }
+}
