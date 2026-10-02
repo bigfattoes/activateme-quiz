@@ -1,0 +1,189 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Baloo 2";
+      src: url("assets/fonts/baloo2-latin.woff2") format("woff2");
+      font-weight: 400 800;
+      font-display: block;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      font-family: "Baloo 2", sans-serif;
+    }
+    #s4-bg {
+      position: absolute;
+      inset: 0;
+      background: #1b0b46;
+    }
+    #s4-glow {
+      position: absolute;
+      left: 140px;
+      top: 520px;
+      width: 800px;
+      height: 900px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #4a01e0 0%, #b01ab8 38%, #f83840 68%, #fc8700 100%);
+      filter: blur(150px);
+      opacity: 0;
+    }
+    #s4-stage { position: absolute; inset: 0; }
+    .s4-kicker {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 262px;
+      text-align: center;
+      color: #f3eeff;
+      font-size: 46px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      line-height: 1;
+      opacity: 0;
+    }
+    /* Phone body: material + geometry adapted from the registry block
+       device-frame-stage (graphite body, bezel, layered shadow). */
+    #s4-phone {
+      position: absolute;
+      left: 281px;
+      top: 400px;
+      width: 518px;
+      height: 1088px;
+      padding: 14px;
+      border-radius: 76px;
+      background: linear-gradient(145deg, #343740, #1b1d22 42%, #111318);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      box-shadow:
+        0 52px 110px rgba(7, 10, 20, 0.45),
+        0 18px 38px rgba(7, 10, 20, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.24),
+        inset 0 0 0 1px rgba(0, 0, 0, 0.48);
+      transform-origin: 50% 88%;
+    }
+    #s4-screen {
+      position: relative;
+      width: 490px;
+      height: 1060px;
+      border-radius: 62px;
+      overflow: hidden;
+      background: #4a01e0;
+    }
+    .s4-shot {
+      position: absolute;
+      inset: 0;
+      width: 490px;
+      height: 1060px;
+      display: block;
+    }
+    #s4-island {
+      position: absolute;
+      left: 50%;
+      top: 16px;
+      width: 132px;
+      height: 38px;
+      margin-left: -66px;
+      border-radius: 20px;
+      background: #0b0b0f;
+    }
+    #s4-touch {
+      position: absolute;
+      left: 186px;
+      top: 337px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.35);
+      border: 4px solid rgba(255, 255, 255, 0.9);
+      opacity: 0;
+    }
+    #s4-sticker {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 400px;
+      display: flex;
+      justify-content: center;
+      opacity: 0;
+    }
+    #s4-sticker-in {
+      padding: 6px 48px 0;
+      border-radius: 40px;
+      background: #ffffff;
+      box-shadow: 0 18px 40px rgba(27, 11, 70, 0.4);
+      font-size: 132px;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+    }
+    #s4-sticker-in span {
+      background: linear-gradient(90deg, #4a01e0, #b01ab8 40%, #f83840 72%, #fc8700);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+  </style>
+
+  <div id="root" data-composition-id="04-phone-demo" data-width="1080" data-height="1920" data-duration="3.9">
+    <div id="s4-bg" class="clip" data-start="0" data-duration="3.9" data-track-index="0">
+      <div id="s4-glow"></div>
+    </div>
+    <div id="s4-stage" class="clip" data-start="0" data-duration="3.9" data-track-index="1">
+      <div class="s4-kicker" id="s4-kick-a">6 QUICK QUESTIONS</div>
+      <div class="s4-kicker" id="s4-kick-b">ONE PERFECT MATCH</div>
+      <div id="s4-phone">
+        <div id="s4-screen">
+          <img class="s4-shot" id="s4-q2" data-layout-allow-overflow src="assets/03-question-2.jpg" alt="Quiz question: How much energy are we talking?" />
+          <img class="s4-shot" id="s4-q2t" data-layout-allow-overflow src="assets/03b-question-2-tapped.jpg" alt="" />
+          <img class="s4-shot" id="s4-q6" src="assets/07-question-6.jpg" alt="Quiz question: Pick their superpower!" />
+          <img class="s4-shot" id="s4-res" src="assets/09-result-football.jpg" alt="Quiz result: Football" />
+          <div id="s4-touch"></div>
+          <div id="s4-island"></div>
+        </div>
+      </div>
+      <div id="s4-sticker"><div id="s4-sticker-in"><span>GOAL!</span></div></div>
+    </div>
+  </div>
+
+  <script src="assets/vendor/gsap.min.js"></script>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const BEAT = 0.5;
+
+      // The phone rises onto the stage (rigid prop, smooth settle, no float).
+      tl.fromTo("#s4-phone", { y: 520, scale: 0.94, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.75, ease: "power3.out" }, 0);
+      tl.fromTo("#s4-glow", { opacity: 0, scale: 0.7 }, { opacity: 0.5, scale: 1, duration: 0.9, ease: "power3.out" }, 0.1);
+      tl.fromTo("#s4-kick-a", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, BEAT);
+
+      // Screen states (stacked; later ones start hidden).
+      tl.set(["#s4-q2t", "#s4-q6", "#s4-res"], { opacity: 0 }, 0);
+
+      // Tap on "Bouncing off the walls": touch ring presses, card goes to tapped.
+      tl.fromTo("#s4-touch", { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.18, ease: "power2.out" }, 0.82);
+      tl.to("#s4-touch", { opacity: 0, scale: 1.8, duration: 0.35, ease: "power2.out" }, 1.0);
+      tl.set("#s4-q2t", { opacity: 1 }, 2 * BEAT);
+      tl.to("#s4-phone", { scale: 0.985, duration: 0.08, ease: "power2.in" }, 2 * BEAT - 0.04);
+      tl.to("#s4-phone", { scale: 1, duration: 0.3, ease: "power3.out" }, 2 * BEAT + 0.04);
+
+      // Push-slide to question 6 on beat 4.
+      tl.fromTo("#s4-q6", { opacity: 1, x: 490 }, { x: 0, duration: 0.32, ease: "power3.out" }, 3 * BEAT);
+      tl.to(["#s4-q2", "#s4-q2t"], { x: -160, duration: 0.32, ease: "power3.out" }, 3 * BEAT);
+
+      // The result lands on beat 5.
+      tl.fromTo("#s4-res", { opacity: 0, scale: 1.04 }, { opacity: 1, scale: 1, duration: 0.25, ease: "power3.out" }, 4 * BEAT);
+      tl.set("#s4-kick-a", { opacity: 0 }, 4 * BEAT);
+      tl.fromTo("#s4-kick-b", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 4 * BEAT);
+
+      // GOAL! breaks out of the phone — the one playful spring (it's a sticker).
+      tl.fromTo(
+        "#s4-sticker",
+        { opacity: 0, scale: 0.42, rotation: -6, y: 60 },
+        { opacity: 1, scale: 1, rotation: -8, y: 0, duration: 0.55, ease: "back.out(1.6)" },
+        4.5 * BEAT,
+      );
+
+      window.__timelines["04-phone-demo"] = tl;
+    })();
+  </script>
+</template>

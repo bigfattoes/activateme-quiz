@@ -1,0 +1,143 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Baloo 2";
+      src: url("assets/fonts/baloo2-latin.woff2") format("woff2");
+      font-weight: 400 800;
+      font-display: block;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      font-family: "Baloo 2", sans-serif;
+    }
+    #s1-bg {
+      position: absolute;
+      inset: 0;
+      background: #1b0b46;
+    }
+    .s1-glow {
+      position: absolute;
+      left: 40px;
+      top: 620px;
+      width: 1000px;
+      height: 1000px;
+      border-radius: 50%;
+      opacity: 0;
+    }
+    #s1-glow-a { background: radial-gradient(circle, rgba(74, 1, 224, 0.75) 0%, rgba(74, 1, 224, 0.25) 42%, rgba(74, 1, 224, 0) 70%); }
+    #s1-glow-b { background: radial-gradient(circle, rgba(176, 26, 184, 0.7) 0%, rgba(176, 26, 184, 0.22) 42%, rgba(176, 26, 184, 0) 70%); }
+    #s1-glow-c { background: radial-gradient(circle, rgba(248, 56, 64, 0.62) 0%, rgba(248, 56, 64, 0.2) 42%, rgba(248, 56, 64, 0) 70%); }
+    #s1-stage {
+      position: absolute;
+      inset: 0;
+    }
+    .s1-word {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 400px;
+      height: 240px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 200px;
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 1;
+      white-space: nowrap;
+      opacity: 0;
+    }
+    .s1-acti {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 760px;
+      height: 700px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      opacity: 0;
+    }
+    .s1-acti img {
+      display: block;
+      max-width: 860px;
+      max-height: 700px;
+      width: auto;
+      height: auto;
+    }
+  </style>
+
+  <div id="root" data-composition-id="01-sports-a" data-width="1080" data-height="1920">
+    <div id="s1-bg" class="clip" data-start="0" data-duration="3" data-track-index="0">
+      <div class="s1-glow" id="s1-glow-a"></div>
+      <div class="s1-glow" id="s1-glow-b"></div>
+      <div class="s1-glow" id="s1-glow-c"></div>
+    </div>
+    <div id="s1-stage" class="clip" data-start="0" data-duration="3" data-track-index="1">
+      <div class="s1-acti" id="s1-acti-a"><img src="assets/football.webp" alt="Acti playing football" /></div>
+      <div class="s1-acti" id="s1-acti-b"><img src="assets/swimming.webp" alt="Acti swimming" /></div>
+      <div class="s1-acti" id="s1-acti-c"><img src="assets/chess.webp" alt="Acti playing chess" /></div>
+      <div class="s1-word" id="s1-word-a">Football.</div>
+      <div class="s1-word" id="s1-word-b">Swimming.</div>
+      <div class="s1-word" id="s1-word-c">Chess.</div>
+    </div>
+  </div>
+
+  <script src="assets/vendor/gsap.min.js"></script>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const BEAT = 0.5;
+      const beats = [
+        { word: "#s1-word-a", acti: "#s1-acti-a", glow: "#s1-glow-a", at: 0 },
+        { word: "#s1-word-b", acti: "#s1-acti-b", glow: "#s1-glow-b", at: 2 * BEAT },
+        { word: "#s1-word-c", acti: "#s1-acti-c", glow: "#s1-glow-c", at: 4 * BEAT },
+      ];
+
+      beats.forEach((b, i) => {
+        const prev = beats[i - 1];
+        // Hard-cut word swap on the beat: the previous word leaves instantly,
+        // the new one settles from a soft blur (no overshoot).
+        if (prev) tl.set(prev.word, { opacity: 0 }, b.at);
+        tl.fromTo(
+          b.word,
+          { opacity: 0, scale: 1.06, filter: "blur(16px)" },
+          { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.34, ease: "power3.out" },
+          b.at,
+        );
+
+        // Acti swaps sport on the same beat (scale-swap, smooth settle).
+        if (prev) {
+          tl.to(prev.acti, { opacity: 0, scale: 0.9, duration: 0.12, ease: "power2.in" }, b.at - 0.06);
+          tl.fromTo(
+            b.acti,
+            { opacity: 0, scale: 0.88, y: 30 },
+            { opacity: 1, scale: 1, y: 0, duration: 0.42, ease: "power3.out" },
+            b.at,
+          );
+        } else {
+          tl.fromTo(
+            b.acti,
+            { opacity: 0, scale: 0.94, y: 140 },
+            { opacity: 1, scale: 1, y: 0, duration: 0.55, ease: "power3.out" },
+            b.at,
+          );
+        }
+
+        // The glow behind Acti walks through the brand gradient.
+        if (prev) tl.to(prev.glow, { opacity: 0, duration: 0.45, ease: "power2.out" }, b.at);
+        tl.fromTo(
+          b.glow,
+          { opacity: 0, scale: 0.85 },
+          { opacity: 1, scale: 1, duration: i === 0 ? 0.7 : 0.45, ease: "power3.out" },
+          b.at,
+        );
+      });
+
+      window.__timelines["01-sports-a"] = tl;
+    })();
+  </script>
+</template>

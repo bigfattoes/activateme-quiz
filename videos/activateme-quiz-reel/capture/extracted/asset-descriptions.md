@@ -2,25 +2,25 @@
 
 No vision key was available, so these descriptions come from the page DOM and from the repo the
 quiz is built from. The quiz is a single-page app: the page capture only sees the start screen, so
-each quiz state was recorded separately at iPhone size (390×664 CSS px @3x → 1170×1992 PNG).
+each quiz state was recorded separately at iPhone size (390×844 CSS px @3x → 1170×2532 PNG, full-screen phone).
 
 ## Quiz screens (real UI, phone portrait, 1170×1992)
 
-- quiz/01-start.png — Start screen: purple→orange gradient, "ActivateMe Fest" logo row, Acti waving (HD), kicker "ACTIVATEME FEST QUIZ", title "What should my kid try?", white pill button "Let's go!".
-- quiz/02-question-1.png — Q1 "How old is your little legend?" with Acti pointing; three white answer cards 🐣 4–6 / 🧒 7–9 / 🧑 10–14; progress bar 1 of 6.
-- quiz/03-question-2.png — Q2 "How much energy are we talking?" with Acti running; cards 🚀 Bouncing off the walls / ⚡ Busy, but can focus / 🧘 Calm and thoughtful.
-- quiz/03b-question-2-tapped.png — Same as Q2 with the first card in its tapped state (orange border, warm tint, slightly enlarged).
-- quiz/04-question-3.png — Q3 "Team player or solo star?" Acti thumbs-up; 3 cards.
-- quiz/05-question-4.png — Q4 "What lights them up?" Acti laughing; 2×2 grid of cards (🏆 Winning! 🎨 Making things 🧩 Figuring things out 🤸 Showing off cool tricks).
-- quiz/06-question-5.png — Q5 "Where are they happiest?" Acti jumping; ☀️ Outdoors / 🏠 Indoors / 💦 In the water.
-- quiz/07-question-6.png — Q6 "Pick their superpower!" Acti flexing; 2×3 grid (Speed, Strength, Perfect aim, Balance, Imagination, Brain power).
-- quiz/09-result-football.png — Result: "YOUR KID'S PERFECT MATCH IS…", Acti kicking a football with a tilted white "GOAL!" sticker, white card "Football" in gradient type, "Born to run and loves a team. Football!", runner-ups Basketball and Cycling with mini Acti poses.
+- 01-start.png — Start screen: purple→orange gradient, "ActivateMe Fest" logo row, Acti waving (HD), kicker "ACTIVATEME FEST QUIZ", title "What should my kid try?", white pill button "Let's go!".
+- 02-question-1.png — Q1 "How old is your little legend?" with Acti pointing; three white answer cards 🐣 4–6 / 🧒 7–9 / 🧑 10–14; progress bar 1 of 6.
+- 03-question-2.png — Q2 "How much energy are we talking?" with Acti running; cards 🚀 Bouncing off the walls / ⚡ Busy, but can focus / 🧘 Calm and thoughtful.
+- 03b-question-2-tapped.png — Same as Q2 with the first card in its tapped state (orange border, warm tint, slightly enlarged).
+- 04-question-3.png — Q3 "Team player or solo star?" Acti thumbs-up; 3 cards.
+- 05-question-4.png — Q4 "What lights them up?" Acti laughing; 2×2 grid of cards (🏆 Winning! 🎨 Making things 🧩 Figuring things out 🤸 Showing off cool tricks).
+- 06-question-5.png — Q5 "Where are they happiest?" Acti jumping; ☀️ Outdoors / 🏠 Indoors / 💦 In the water.
+- 07-question-6.png — Q6 "Pick their superpower!" Acti flexing; 2×3 grid (Speed, Strength, Perfect aim, Balance, Imagination, Brain power).
+- 09-result-football.png — Result: "YOUR KID'S PERFECT MATCH IS…", Acti kicking a football with a tilted white "GOAL!" sticker, white card "Football" in gradient type, "Born to run and loves a team. Football!", runner-ups Basketball and Cycling with mini Acti poses.
 
 ## Acti mascot — HD transparent cut-outs (webp, ~1100 px tall)
 
 Orange furry 3D character, white & purple cap with the heart logo, white hoodie, purple shorts, colourful sneakers.
-- Sports (one per festival activity): acti/football.webp (mid-kick with ball), acti/basketball.webp (ball overhead), acti/cricket.webp (bat swing), acti/tennis.webp (racket), acti/swimming.webp (goggles + rubber ring), acti/gymnastics.webp (handstand/cartwheel), acti/boxing.webp (red gloves), acti/skating.webp (inline skates), acti/cycling.webp (on a purple bike), acti/vr.webp (VR headset + controller, "VR & Esports"), acti/chess.webp (holding a white knight), acti/creativity.webp (paintbrush + palette).
-- Reactions: acti/wave.webp, point, run, jump, laugh, think, flex, thumbs, dance, heart, thanks, shocked, cry, yawn; acti/face.webp (close-up face crop, square, not a cut-out).
+- Sports (one per festival activity): football.webp (mid-kick with ball), basketball.webp (ball overhead), cricket.webp (bat swing), tennis.webp (racket), swimming.webp (goggles + rubber ring), gymnastics.webp (handstand/cartwheel), boxing.webp (red gloves), skating.webp (inline skates), cycling.webp (on a purple bike), vr.webp (VR headset + controller, "VR & Esports"), chess.webp (holding a white knight), creativity.webp (paintbrush + palette).
+- Reactions: wave.webp, point, run, jump, laugh, think, flex, thumbs, dance, heart, thanks, shocked, cry, yawn; face.webp (close-up face crop, square, not a cut-out).
 
 ## Brand
 

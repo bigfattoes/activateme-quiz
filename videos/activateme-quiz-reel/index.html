@@ -2,8 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=1920, height=1080" />
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/vendor/gsap.min.js"></script>
     <style>
       * {
         margin: 0;
@@ -12,25 +12,23 @@
       }
       html,
       body {
-        margin: 0;
-        width: 1920px;
-        height: 1080px;
+        width: 1080px;
+        height: 1920px;
         overflow: hidden;
-        background: #0a0a0a;
+        background: #000;
       }
       #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #FFFFFF;
+      }
+      .scene {
+        position: absolute;
+        inset: 0;
         width: 100%;
         height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-      }
-      #title {
-        color: #f4f4f5;
-        font-size: 72px;
-        font-weight: 600;
-        letter-spacing: -0.03em;
       }
     </style>
   </head>
@@ -39,17 +37,65 @@
       id="root"
       data-composition-id="main"
       data-start="0"
-      data-duration="10"
-      data-width="1920"
-      data-height="1080"
+      data-duration="15"
+      data-width="1080"
+      data-height="1920"
     >
-      <h1 id="title" class="clip" data-start="0" data-duration="10" data-track-index="0">Title</h1>
+      <div
+        id="el-01-sports-a"
+        class="scene"
+        data-composition-id="01-sports-a"
+        data-composition-src="compositions/frames/01-sports-a.html"
+        data-start="0"
+        data-duration="3"
+        data-track-index="1"
+      ></div>
+
+      <div
+        id="el-02-sports-b"
+        class="scene"
+        data-composition-id="02-sports-b"
+        data-composition-src="compositions/frames/02-sports-b.html"
+        data-start="3"
+        data-duration="3"
+        data-track-index="1"
+      ></div>
+
+      <div
+        id="el-03-question"
+        class="scene"
+        data-composition-id="03-question"
+        data-composition-src="compositions/frames/03-question.html"
+        data-start="6"
+        data-duration="3"
+        data-track-index="1"
+      ></div>
+
+      <div
+        id="el-04-phone-demo"
+        class="scene"
+        data-composition-id="04-phone-demo"
+        data-composition-src="compositions/frames/04-phone-demo.html"
+        data-start="9"
+        data-duration="3.5"
+        data-track-index="1"
+      ></div>
+
+      <div
+        id="el-05-end-card"
+        class="scene"
+        data-composition-id="05-end-card"
+        data-composition-src="compositions/frames/05-end-card.html"
+        data-start="12.5"
+        data-duration="2.5"
+        data-track-index="1"
+      ></div>
+
     </div>
+
     <script>
-      const tl = gsap.timeline({ paused: true });
-      // Example: tl.fromTo("#title", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6 }, 0);
-      window.__timelines["main"] = tl;
-      tl.seek(0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
     </script>
   </body>
 </html>

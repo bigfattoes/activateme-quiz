@@ -1,0 +1,206 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Baloo 2";
+      src: url("assets/fonts/baloo2-latin.woff2") format("woff2");
+      font-weight: 400 800;
+      font-display: block;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      font-family: "Baloo 2", sans-serif;
+    }
+    #s2-bg {
+      position: absolute;
+      inset: 0;
+      background: #1b0b46;
+    }
+    .s2-glow {
+      position: absolute;
+      left: 40px;
+      top: 620px;
+      width: 1000px;
+      height: 1000px;
+      border-radius: 50%;
+      opacity: 0;
+    }
+    #s2-glow-orange { background: radial-gradient(circle, rgba(252, 135, 0, 0.6) 0%, rgba(252, 135, 0, 0.18) 42%, rgba(252, 135, 0, 0) 70%); }
+    #s2-glow-full {
+      left: 90px;
+      top: 700px;
+      width: 900px;
+      height: 900px;
+      background: linear-gradient(135deg, #4a01e0 0%, #b01ab8 38%, #f83840 68%, #fc8700 100%);
+      filter: blur(140px);
+    }
+    #s2-stage { position: absolute; inset: 0; }
+    .s2-word {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 400px;
+      height: 240px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 200px;
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 1;
+      white-space: nowrap;
+      opacity: 0;
+    }
+    .s2-word.s2-long { font-size: 168px; }
+    .s2-word.s2-xlong { font-size: 140px; }
+    .s2-grad {
+      background: linear-gradient(90deg, #4a01e0, #b01ab8 40%, #f83840 72%, #fc8700);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      padding-right: 0.06em;
+    }
+    .s2-acti {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 760px;
+      height: 700px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      opacity: 0;
+    }
+    .s2-acti img {
+      display: block;
+      max-width: 860px;
+      max-height: 700px;
+    }
+    #s2-grid {
+      position: absolute;
+      left: 60px;
+      top: 690px;
+      width: 960px;
+      height: 800px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+    }
+    .s2-cell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+    }
+    .s2-cell img {
+      display: block;
+      max-width: 280px;
+      max-height: 186px;
+    }
+  </style>
+
+  <div id="root" data-composition-id="02-sports-b" data-width="1080" data-height="1920" data-duration="3.4">
+    <div id="s2-bg" class="clip" data-start="0" data-duration="3.4" data-track-index="0">
+      <div class="s2-glow" id="s2-glow-orange"></div>
+      <div class="s2-glow" id="s2-glow-full"></div>
+    </div>
+    <div id="s2-stage" class="clip" data-start="0" data-duration="3.4" data-track-index="1">
+      <div class="s2-acti" data-k="0"><img src="assets/cycling.webp" alt="Acti cycling" /></div>
+      <div class="s2-acti" data-k="1"><img src="assets/creativity.webp" alt="Acti painting" /></div>
+      <div class="s2-acti" data-k="2"><img src="assets/boxing.webp" alt="" /></div>
+      <div class="s2-acti" data-k="3"><img src="assets/skating.webp" alt="" /></div>
+      <div class="s2-acti" data-k="4"><img src="assets/tennis.webp" alt="" /></div>
+      <div class="s2-acti" data-k="5"><img src="assets/basketball.webp" alt="" /></div>
+      <div class="s2-acti" data-k="6"><img src="assets/cricket.webp" alt="" /></div>
+      <div class="s2-acti" data-k="7"><img src="assets/gymnastics.webp" alt="" /></div>
+      <div class="s2-acti" data-k="8"><img src="assets/vr.webp" alt="" /></div>
+
+      <div class="s2-word" data-k="0">Cycling.</div>
+      <div class="s2-word s2-long" data-k="1">Creativity.</div>
+      <div class="s2-word" data-k="2">Boxing.</div>
+      <div class="s2-word" data-k="3">Skating.</div>
+      <div class="s2-word" data-k="4">Tennis.</div>
+      <div class="s2-word s2-long" data-k="5">Basketball.</div>
+      <div class="s2-word" data-k="6">Cricket.</div>
+      <div class="s2-word s2-long" data-k="7">Gymnastics.</div>
+      <div class="s2-word s2-xlong" data-k="8">VR &amp; Esports.</div>
+      <div class="s2-word s2-xlong" id="s2-word-12"><span class="s2-grad">12</span>&nbsp;activities.</div>
+
+      <div id="s2-grid">
+        <div class="s2-cell"><img src="assets/grid/football.webp" alt="" /></div>
+        <div class="s2-cell"><img src="assets/grid/basketball.webp" alt="" /></div>
+        <div class="s2-cell"><img src="assets/grid/cricket.webp" alt="" /></div>
+        <div class="s2-cell"><img src="assets/grid/tennis.webp" alt="" /></div>
+        <div class="s2-cell"><img src="assets/grid/swimming.webp" alt="" /></div>
+        <div class="s2-cell"><img src="assets/grid/gymnastics.webp" alt="" /></div>
+        <div class="s2-cell"><img src="assets/grid/boxing.webp" alt="" /></div>
+        <div class="s2-cell"><img src="assets/grid/skating.webp" alt="" /></div>
+        <div class="s2-cell"><img src="assets/grid/cycling.webp" alt="" /></div>
+        <div class="s2-cell"><img src="assets/grid/vr.webp" alt="" /></div>
+        <div class="s2-cell"><img src="assets/grid/chess.webp" alt="" /></div>
+        <div class="s2-cell"><img src="assets/grid/creativity.webp" alt="" /></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/vendor/gsap.min.js"></script>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const BEAT = 0.5;
+      const SIXTEENTH = 0.125;
+      const words = gsap.utils.toArray("#s2-stage .s2-word[data-k]");
+      const actis = gsap.utils.toArray("#s2-stage .s2-acti");
+
+      // Swap schedule: two full beats (handing off from frame 1's slot),
+      // then a 16th-note flicker through the other seven sports.
+      const times = [0, BEAT];
+      for (let i = 0; i < 7; i++) times.push(2 * BEAT + i * SIXTEENTH);
+      const FLICKER_END = 2 * BEAT + 7 * SIXTEENTH; // 1.875: one blank 16th
+      const GRID_AT = 4 * BEAT; // 2.0
+
+      tl.set(words.slice(1).concat(actis.slice(1)), { opacity: 0 }, 0);
+      times.forEach((t, k) => {
+        const flicker = k >= 2;
+        if (k > 0) {
+          tl.set(words[k - 1], { opacity: 0 }, t);
+          tl.set(actis[k - 1], { opacity: 0 }, t);
+        }
+        if (flicker) {
+          // Flicker: instant hard cuts, a touch of motion blur on Acti.
+          tl.set(words[k], { opacity: 1 }, t);
+          tl.set(actis[k], { opacity: 1, filter: "blur(10px)", x: 40 }, t);
+          tl.to(actis[k], { filter: "blur(0px)", x: 0, duration: 0.1, ease: "power2.out" }, t);
+        } else {
+          tl.fromTo(words[k], { opacity: 0, scale: 1.06, filter: "blur(14px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.3, ease: "power3.out" }, t);
+          tl.fromTo(actis[k], { opacity: 0, scale: 0.88, y: 30 }, { opacity: 1, scale: 1, y: 0, duration: 0.38, ease: "power3.out" }, t);
+        }
+      });
+      tl.set(words[words.length - 1], { opacity: 0 }, FLICKER_END);
+      tl.set(actis[actis.length - 1], { opacity: 0 }, FLICKER_END);
+
+      // Glow: orange for Cycling, then the full brand gradient from Creativity on.
+      tl.fromTo("#s2-glow-orange", { opacity: 1 }, { opacity: 0, duration: 0.45, ease: "power2.out" }, BEAT);
+      tl.fromTo("#s2-glow-full", { opacity: 0, scale: 0.8 }, { opacity: 0.55, scale: 1, duration: 0.5, ease: "power3.out" }, BEAT);
+      tl.to("#s2-glow-full", { opacity: 0.38, scale: 1.25, duration: 0.6, ease: "power3.out" }, GRID_AT);
+
+      // Finale: "12 activities." + all twelve Acti assemble from the centre out.
+      tl.fromTo("#s2-word-12", { opacity: 0, scale: 1.06, filter: "blur(14px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.34, ease: "power3.out" }, GRID_AT);
+      const cells = gsap.utils.toArray("#s2-grid .s2-cell");
+      cells.forEach((cell, i) => {
+        const col = i % 3, row = Math.floor(i / 3);
+        const dist = Math.abs(col - 1) + Math.abs(row - 1.5);
+        tl.fromTo(
+          cell,
+          { opacity: 0, scale: 0.4, x: (1 - col) * 120, y: (1.5 - row) * 110 },
+          { opacity: 1, scale: 1, x: 0, y: 0, duration: 0.5, ease: "power3.out" },
+          GRID_AT + dist * 0.05,
+        );
+      });
+
+      window.__timelines["02-sports-b"] = tl;
+    })();
+  </script>
+</template>
