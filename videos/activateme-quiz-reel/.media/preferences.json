@@ -35,6 +35,13 @@
         "activateme-quiz-reel"
       ],
       "updated_at": "2026-10-02T09:40:10.615Z"
+    },
+    "style_preset.product-launch-video": {
+      "value": "broadside",
+      "confirmed_in": [
+        "activateme-quiz-reel"
+      ],
+      "updated_at": "2026-10-02T09:43:38.050Z"
     }
   },
   "sightings": {}

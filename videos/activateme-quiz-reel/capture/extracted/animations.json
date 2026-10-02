@@ -1,0 +1,103 @@
+{
+  "summary": {
+    "webAnimations": 2,
+    "cssDeclarations": 3,
+    "scrollTargets": 0,
+    "cdpAnimations": 2,
+    "canvases": 0
+  },
+  "namedAnimations": [
+    "screen-in",
+    "bob"
+  ],
+  "scrollTriggeredElements": 0,
+  "representativeAnimations": [
+    {
+      "type": "CSSAnimation",
+      "playState": "finished",
+      "animationName": "screen-in",
+      "targetSelector": "#screen-start.screen.screen-start",
+      "targetRect": {
+        "x": 736,
+        "y": 14,
+        "width": 448,
+        "height": 1046,
+        "top": 14,
+        "right": 1184,
+        "bottom": 1060,
+        "left": 736
+      },
+      "keyframes": [
+        {
+          "offset": 0,
+          "easing": "ease",
+          "composite": "auto",
+          "transform": "translateY(12px)",
+          "opacity": "0",
+          "computedOffset": 0
+        },
+        {
+          "offset": 1,
+          "easing": "ease",
+          "composite": "auto",
+          "transform": "none",
+          "opacity": "1",
+          "computedOffset": 1
+        }
+      ],
+      "timing": {
+        "duration": 350,
+        "delay": 0,
+        "iterations": 1,
+        "easing": "linear",
+        "direction": "normal"
+      }
+    },
+    {
+      "type": "CSSAnimation",
+      "playState": "running",
+      "animationName": "bob",
+      "targetSelector": "img.acti.acti-hero.bob",
+      "targetRect": {
+        "x": 860.3125,
+        "y": 58.35091018676758,
+        "width": 199.375,
+        "height": 330,
+        "top": 58.35091018676758,
+        "right": 1059.6875,
+        "bottom": 388.3509101867676,
+        "left": 860.3125
+      },
+      "keyframes": [
+        {
+          "offset": 0,
+          "easing": "ease-in-out",
+          "composite": "replace",
+          "transform": "none",
+          "computedOffset": 0
+        },
+        {
+          "offset": 0.5,
+          "easing": "ease-in-out",
+          "composite": "auto",
+          "transform": "translateY(-8px)",
+          "computedOffset": 0.5
+        },
+        {
+          "offset": 1,
+          "easing": "ease-in-out",
+          "composite": "replace",
+          "transform": "none",
+          "computedOffset": 1
+        }
+      ],
+      "timing": {
+        "duration": 3000,
+        "delay": 0,
+        "iterations": null,
+        "easing": "linear",
+        "direction": "normal"
+      }
+    }
+  ]
+}

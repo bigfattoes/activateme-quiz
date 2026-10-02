@@ -1,0 +1,6 @@
+[span] ActivateMe Fest
+[p] ActivateMe Fest quiz
+[h1] What should my kid try?
+[p] 6 quick questions, under a minute. Acti will find your kid's perfect activity!
+[button] Let's go!
+[p] No sign-up needed to see the result.
